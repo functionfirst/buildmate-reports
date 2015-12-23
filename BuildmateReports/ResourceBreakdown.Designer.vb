@@ -1,22 +1,20 @@
-Partial Class PricedMaterials
+Partial Class ResourceBreakdown
 
     'NOTE: The following procedure is required by the telerik Reporting Designer
     'It can be modified using the telerik Reporting Designer.  
     'Do not modify it using the code editor.
     Private Sub InitializeComponent()
         Dim ReportParameter1 As Telerik.Reporting.ReportParameter = New Telerik.Reporting.ReportParameter()
-        Dim ReportParameter2 As Telerik.Reporting.ReportParameter = New Telerik.Reporting.ReportParameter()
         Dim StyleRule1 As Telerik.Reporting.Drawing.StyleRule = New Telerik.Reporting.Drawing.StyleRule()
         Dim StyleRule2 As Telerik.Reporting.Drawing.StyleRule = New Telerik.Reporting.Drawing.StyleRule()
         Dim StyleRule3 As Telerik.Reporting.Drawing.StyleRule = New Telerik.Reporting.Drawing.StyleRule()
         Dim StyleRule4 As Telerik.Reporting.Drawing.StyleRule = New Telerik.Reporting.Drawing.StyleRule()
         Me.SqlDataSource1 = New Telerik.Reporting.SqlDataSource()
         Me.supplierNameGroupHeader = New Telerik.Reporting.GroupHeaderSection()
-        Me.supplierNameDataTextBox = New Telerik.Reporting.TextBox()
         Me.supplierNameGroupFooter = New Telerik.Reporting.GroupFooterSection()
         Me.priceSumFunctionTextBox = New Telerik.Reporting.TextBox()
         Me.TextBox3 = New Telerik.Reporting.TextBox()
-        Me.supplierNameGroup = New Telerik.Reporting.Group()
+        Me.resourceTypeGroup = New Telerik.Reporting.Group()
         Me.labelsGroupHeader = New Telerik.Reporting.GroupHeaderSection()
         Me.resourceNameCaptionTextBox = New Telerik.Reporting.TextBox()
         Me.manufacturerCaptionTextBox = New Telerik.Reporting.TextBox()
@@ -38,33 +36,28 @@ Partial Class PricedMaterials
         Me.suffixDataTextBox = New Telerik.Reporting.TextBox()
         Me.qtyDataTextBox = New Telerik.Reporting.TextBox()
         Me.priceDataTextBox = New Telerik.Reporting.TextBox()
+        Me.TextBox1 = New Telerik.Reporting.TextBox()
+        Me.TextBox2 = New Telerik.Reporting.TextBox()
+        Me.TextBox4 = New Telerik.Reporting.TextBox()
+        Me.TextBox5 = New Telerik.Reporting.TextBox()
+        Me.TextBox6 = New Telerik.Reporting.TextBox()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'SqlDataSource1
         '
-        Me.SqlDataSource1.ConnectionString = "LocalSqlServer"
+        Me.SqlDataSource1.ConnectionString = "server=mssql2008R2.aspnethosting.co.uk, 14330;uid=getbuild_user;pwd=#Sharpe30pyr!" &
+    ";database=getbuild_mate"
         Me.SqlDataSource1.Name = "SqlDataSource1"
-        Me.SqlDataSource1.Parameters.AddRange(New Telerik.Reporting.SqlDataSourceParameter() {New Telerik.Reporting.SqlDataSourceParameter("@pid", System.Data.DbType.Int32, "=Parameters.pid.Value"), New Telerik.Reporting.SqlDataSourceParameter("@resourceTypeId", System.Data.DbType.Int32, "=Parameters.resourceTypeId.Value")})
-        Me.SqlDataSource1.SelectCommand = "dbo.report_RESOURCES"
+        Me.SqlDataSource1.Parameters.AddRange(New Telerik.Reporting.SqlDataSourceParameter() {New Telerik.Reporting.SqlDataSourceParameter("@projectId", System.Data.DbType.Int32, "=Parameters.pid.Value")})
+        Me.SqlDataSource1.ProviderName = "System.Data.SqlClient"
+        Me.SqlDataSource1.SelectCommand = "dbo.report_RESOURCE_BREAKDOWN"
         Me.SqlDataSource1.SelectCommandType = Telerik.Reporting.SqlDataSourceCommandType.StoredProcedure
         '
         'supplierNameGroupHeader
         '
-        Me.supplierNameGroupHeader.Height = Telerik.Reporting.Drawing.Unit.Cm(0.71437495946884155R)
-        Me.supplierNameGroupHeader.Items.AddRange(New Telerik.Reporting.ReportItemBase() {Me.supplierNameDataTextBox})
+        Me.supplierNameGroupHeader.Height = Telerik.Reporting.Drawing.Unit.Cm(0.800000011920929R)
+        Me.supplierNameGroupHeader.Items.AddRange(New Telerik.Reporting.ReportItemBase() {Me.TextBox6})
         Me.supplierNameGroupHeader.Name = "supplierNameGroupHeader"
-        '
-        'supplierNameDataTextBox
-        '
-        Me.supplierNameDataTextBox.CanGrow = True
-        Me.supplierNameDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.052916865795850754R), Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R))
-        Me.supplierNameDataTextBox.Name = "supplierNameDataTextBox"
-        Me.supplierNameDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(24.355419158935547R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
-        Me.supplierNameDataTextBox.Style.Font.Bold = True
-        Me.supplierNameDataTextBox.Style.Font.Name = "Open Sans"
-        Me.supplierNameDataTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11.0R)
-        Me.supplierNameDataTextBox.StyleName = "Data"
-        Me.supplierNameDataTextBox.Value = "=Fields.supplierName"
         '
         'supplierNameGroupFooter
         '
@@ -85,7 +78,7 @@ Partial Class PricedMaterials
         Me.priceSumFunctionTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.0R)
         Me.priceSumFunctionTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right
         Me.priceSumFunctionTextBox.StyleName = "Data"
-        Me.priceSumFunctionTextBox.Value = "=Sum(Fields.price)"
+        Me.priceSumFunctionTextBox.Value = "=Sum(Fields.projectTotalCost)"
         '
         'TextBox3
         '
@@ -100,17 +93,17 @@ Partial Class PricedMaterials
         Me.TextBox3.StyleName = "Data"
         Me.TextBox3.Value = "Subtotal"
         '
-        'supplierNameGroup
+        'resourceTypeGroup
         '
-        Me.supplierNameGroup.GroupFooter = Me.supplierNameGroupFooter
-        Me.supplierNameGroup.GroupHeader = Me.supplierNameGroupHeader
-        Me.supplierNameGroup.Groupings.AddRange(New Telerik.Reporting.Grouping() {New Telerik.Reporting.Grouping("=Fields.supplierName")})
-        Me.supplierNameGroup.Name = "supplierNameGroup"
+        Me.resourceTypeGroup.GroupFooter = Me.supplierNameGroupFooter
+        Me.resourceTypeGroup.GroupHeader = Me.supplierNameGroupHeader
+        Me.resourceTypeGroup.Groupings.AddRange(New Telerik.Reporting.Grouping() {New Telerik.Reporting.Grouping("=Fields.resourceTypeId")})
+        Me.resourceTypeGroup.Name = "resourceTypeGroup"
         '
         'labelsGroupHeader
         '
-        Me.labelsGroupHeader.Height = Telerik.Reporting.Drawing.Unit.Cm(1.0R)
-        Me.labelsGroupHeader.Items.AddRange(New Telerik.Reporting.ReportItemBase() {Me.resourceNameCaptionTextBox, Me.manufacturerCaptionTextBox, Me.partIdCaptionTextBox, Me.suffixCaptionTextBox, Me.qtyCaptionTextBox, Me.priceCaptionTextBox})
+        Me.labelsGroupHeader.Height = Telerik.Reporting.Drawing.Unit.Cm(1.4199999570846558R)
+        Me.labelsGroupHeader.Items.AddRange(New Telerik.Reporting.ReportItemBase() {Me.resourceNameCaptionTextBox, Me.manufacturerCaptionTextBox, Me.partIdCaptionTextBox, Me.suffixCaptionTextBox, Me.qtyCaptionTextBox, Me.priceCaptionTextBox, Me.TextBox1, Me.TextBox4, Me.TextBox5})
         Me.labelsGroupHeader.Name = "labelsGroupHeader"
         Me.labelsGroupHeader.PrintOnEveryPage = True
         Me.labelsGroupHeader.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke
@@ -123,84 +116,88 @@ Partial Class PricedMaterials
         'resourceNameCaptionTextBox
         '
         Me.resourceNameCaptionTextBox.CanGrow = True
-        Me.resourceNameCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R), Telerik.Reporting.Drawing.Unit.Cm(0R))
+        Me.resourceNameCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.resourceNameCaptionTextBox.Name = "resourceNameCaptionTextBox"
-        Me.resourceNameCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.1470832824707031R), Telerik.Reporting.Drawing.Unit.Cm(0.91823315620422363R))
+        Me.resourceNameCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.90000057220459R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.resourceNameCaptionTextBox.Style.Font.Bold = True
         Me.resourceNameCaptionTextBox.Style.Font.Name = "Open Sans"
         Me.resourceNameCaptionTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9.0R)
         Me.resourceNameCaptionTextBox.StyleName = "Caption"
-        Me.resourceNameCaptionTextBox.Value = "Product Description"
+        Me.resourceNameCaptionTextBox.Value = "Resource Name"
         '
         'manufacturerCaptionTextBox
         '
         Me.manufacturerCaptionTextBox.CanGrow = True
-        Me.manufacturerCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3000001907348633R), Telerik.Reporting.Drawing.Unit.Cm(0R))
+        Me.manufacturerCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(10.133333206176758R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.manufacturerCaptionTextBox.Name = "manufacturerCaptionTextBox"
-        Me.manufacturerCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.09999942779541R), Telerik.Reporting.Drawing.Unit.Cm(0.91823315620422363R))
+        Me.manufacturerCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.5R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
+        Me.manufacturerCaptionTextBox.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.Solid
         Me.manufacturerCaptionTextBox.Style.Font.Bold = True
         Me.manufacturerCaptionTextBox.Style.Font.Name = "Open Sans"
         Me.manufacturerCaptionTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9.0R)
+        Me.manufacturerCaptionTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center
         Me.manufacturerCaptionTextBox.StyleName = "Caption"
-        Me.manufacturerCaptionTextBox.Value = "Build Stage Reference"
+        Me.manufacturerCaptionTextBox.Value = "Unit"
         '
         'partIdCaptionTextBox
         '
         Me.partIdCaptionTextBox.CanGrow = True
-        Me.partIdCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.5R), Telerik.Reporting.Drawing.Unit.Cm(0R))
+        Me.partIdCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.866666793823242R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.partIdCaptionTextBox.Name = "partIdCaptionTextBox"
-        Me.partIdCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.331770658493042R), Telerik.Reporting.Drawing.Unit.Cm(0.91823315620422363R))
+        Me.partIdCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.7999999523162842R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.partIdCaptionTextBox.Style.Font.Bold = True
         Me.partIdCaptionTextBox.Style.Font.Name = "Open Sans"
         Me.partIdCaptionTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9.0R)
         Me.partIdCaptionTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center
         Me.partIdCaptionTextBox.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle
         Me.partIdCaptionTextBox.StyleName = "Caption"
-        Me.partIdCaptionTextBox.Value = "Unit"
+        Me.partIdCaptionTextBox.Value = "Qty"
         '
         'suffixCaptionTextBox
         '
         Me.suffixCaptionTextBox.CanGrow = True
-        Me.suffixCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19.200000762939453R), Telerik.Reporting.Drawing.Unit.Cm(0R))
+        Me.suffixCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(17.600000381469727R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.suffixCaptionTextBox.Name = "suffixCaptionTextBox"
-        Me.suffixCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.1000008583068848R), Telerik.Reporting.Drawing.Unit.Cm(0.91823315620422363R))
+        Me.suffixCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9666661024093628R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
+        Me.suffixCaptionTextBox.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.Solid
         Me.suffixCaptionTextBox.Style.Font.Bold = True
         Me.suffixCaptionTextBox.Style.Font.Name = "Open Sans"
         Me.suffixCaptionTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9.0R)
         Me.suffixCaptionTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right
         Me.suffixCaptionTextBox.StyleName = "Caption"
-        Me.suffixCaptionTextBox.Value = "Rate"
+        Me.suffixCaptionTextBox.Value = "Cost (£)"
         '
         'qtyCaptionTextBox
         '
         Me.qtyCaptionTextBox.CanGrow = True
-        Me.qtyCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(17.0R), Telerik.Reporting.Drawing.Unit.Cm(0R))
+        Me.qtyCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.90000057220459R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.qtyCaptionTextBox.Name = "qtyCaptionTextBox"
-        Me.qtyCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999957084655762R), Telerik.Reporting.Drawing.Unit.Cm(0.91833329200744629R))
+        Me.qtyCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.09999942779541R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.qtyCaptionTextBox.Style.Font.Bold = True
         Me.qtyCaptionTextBox.Style.Font.Name = "Open Sans"
         Me.qtyCaptionTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9.0R)
         Me.qtyCaptionTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right
         Me.qtyCaptionTextBox.StyleName = "Caption"
-        Me.qtyCaptionTextBox.Value = "Material Quantity"
+        Me.qtyCaptionTextBox.Value = "Cost (£)"
         '
         'priceCaptionTextBox
         '
         Me.priceCaptionTextBox.CanGrow = True
-        Me.priceCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(21.456510543823242R), Telerik.Reporting.Drawing.Unit.Cm(0R))
+        Me.priceCaptionTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19.766666412353516R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.priceCaptionTextBox.Name = "priceCaptionTextBox"
-        Me.priceCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.9434912204742432R), Telerik.Reporting.Drawing.Unit.Cm(0.91823315620422363R))
+        Me.priceCaptionTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.0000007152557373R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.priceCaptionTextBox.Style.Font.Bold = True
         Me.priceCaptionTextBox.Style.Font.Name = "Open Sans"
         Me.priceCaptionTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9.0R)
         Me.priceCaptionTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right
         Me.priceCaptionTextBox.StyleName = "Caption"
-        Me.priceCaptionTextBox.Value = "Total" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ex VAT"
+        Me.priceCaptionTextBox.Value = "Waste"
         '
         'labelsGroupFooter
         '
         Me.labelsGroupFooter.Height = Telerik.Reporting.Drawing.Unit.Cm(0.71437495946884155R)
         Me.labelsGroupFooter.Name = "labelsGroupFooter"
+        Me.labelsGroupFooter.PageBreak = Telerik.Reporting.PageBreak.None
         Me.labelsGroupFooter.Style.Visible = False
         '
         'labelsGroup
@@ -211,19 +208,21 @@ Partial Class PricedMaterials
         '
         'pageHeader
         '
-        Me.pageHeader.Height = Telerik.Reporting.Drawing.Unit.Cm(0.71437495946884155R)
+        Me.pageHeader.Height = Telerik.Reporting.Drawing.Unit.Cm(0.99999988079071045R)
         Me.pageHeader.Items.AddRange(New Telerik.Reporting.ReportItemBase() {Me.reportNameTextBox})
         Me.pageHeader.Name = "pageHeader"
-        Me.pageHeader.Style.Visible = False
+        Me.pageHeader.Style.Visible = True
         '
         'reportNameTextBox
         '
         Me.reportNameTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R), Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R))
         Me.reportNameTextBox.Name = "reportNameTextBox"
-        Me.reportNameTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(24.408334732055664R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
+        Me.reportNameTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(22.347084045410156R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
+        Me.reportNameTextBox.Style.Font.Bold = True
         Me.reportNameTextBox.Style.Font.Name = "Open Sans"
+        Me.reportNameTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(16.0R)
         Me.reportNameTextBox.StyleName = "PageInfo"
-        Me.reportNameTextBox.Value = "Resource Break-down"
+        Me.reportNameTextBox.Value = "Resource Cost (Break-down)"
         '
         'pageFooter
         '
@@ -255,8 +254,8 @@ Partial Class PricedMaterials
         '
         'detail
         '
-        Me.detail.Height = Telerik.Reporting.Drawing.Unit.Cm(0.71437495946884155R)
-        Me.detail.Items.AddRange(New Telerik.Reporting.ReportItemBase() {Me.resourceNameDataTextBox, Me.manufacturerDataTextBox, Me.partIdDataTextBox, Me.suffixDataTextBox, Me.qtyDataTextBox, Me.priceDataTextBox})
+        Me.detail.Height = Telerik.Reporting.Drawing.Unit.Cm(0.72833341360092163R)
+        Me.detail.Items.AddRange(New Telerik.Reporting.ReportItemBase() {Me.resourceNameDataTextBox, Me.manufacturerDataTextBox, Me.partIdDataTextBox, Me.suffixDataTextBox, Me.qtyDataTextBox, Me.priceDataTextBox, Me.TextBox2})
         Me.detail.Name = "detail"
         Me.detail.Style.BorderColor.Default = System.Drawing.Color.Gainsboro
         Me.detail.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid
@@ -268,9 +267,9 @@ Partial Class PricedMaterials
         'resourceNameDataTextBox
         '
         Me.resourceNameDataTextBox.CanGrow = True
-        Me.resourceNameDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R), Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R))
+        Me.resourceNameDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R), Telerik.Reporting.Drawing.Unit.Cm(0R))
         Me.resourceNameDataTextBox.Name = "resourceNameDataTextBox"
-        Me.resourceNameDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.1470832824707031R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
+        Me.resourceNameDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.8470840454101562R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.resourceNameDataTextBox.Style.Font.Name = "Open Sans"
         Me.resourceNameDataTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.0R)
         Me.resourceNameDataTextBox.StyleName = "Data"
@@ -279,71 +278,145 @@ Partial Class PricedMaterials
         'manufacturerDataTextBox
         '
         Me.manufacturerDataTextBox.CanGrow = True
-        Me.manufacturerDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3000001907348633R), Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R))
+        Me.manufacturerDataTextBox.Format = "{0}"
+        Me.manufacturerDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(10.133333206176758R), Telerik.Reporting.Drawing.Unit.Cm(0R))
         Me.manufacturerDataTextBox.Name = "manufacturerDataTextBox"
-        Me.manufacturerDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.09999942779541R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
+        Me.manufacturerDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.5R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
+        Me.manufacturerDataTextBox.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.Solid
         Me.manufacturerDataTextBox.Style.Font.Name = "Open Sans"
         Me.manufacturerDataTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.0R)
+        Me.manufacturerDataTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center
         Me.manufacturerDataTextBox.StyleName = "Data"
-        Me.manufacturerDataTextBox.Value = ""
+        Me.manufacturerDataTextBox.Value = "=Fields.purchaseUnit"
         '
         'partIdDataTextBox
         '
         Me.partIdDataTextBox.CanGrow = True
-        Me.partIdDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.5R), Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R))
+        Me.partIdDataTextBox.Format = "{0}"
+        Me.partIdDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.866666793823242R), Telerik.Reporting.Drawing.Unit.Cm(0R))
         Me.partIdDataTextBox.Name = "partIdDataTextBox"
-        Me.partIdDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.331770658493042R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
+        Me.partIdDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.7999999523162842R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.partIdDataTextBox.Style.Font.Name = "Open Sans"
         Me.partIdDataTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.0R)
         Me.partIdDataTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center
         Me.partIdDataTextBox.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle
         Me.partIdDataTextBox.StyleName = "Data"
-        Me.partIdDataTextBox.Value = "=Fields.suffix"
+        Me.partIdDataTextBox.Value = "=Fields.purchaseQty"
         '
         'suffixDataTextBox
         '
         Me.suffixDataTextBox.CanGrow = True
-        Me.suffixDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19.200000762939453R), Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R))
+        Me.suffixDataTextBox.Format = "{0:C2}"
+        Me.suffixDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(17.600000381469727R), Telerik.Reporting.Drawing.Unit.Cm(0R))
         Me.suffixDataTextBox.Name = "suffixDataTextBox"
-        Me.suffixDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.1000008583068848R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
+        Me.suffixDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9666661024093628R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
+        Me.suffixDataTextBox.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.Solid
         Me.suffixDataTextBox.Style.Font.Name = "Open Sans"
         Me.suffixDataTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.0R)
         Me.suffixDataTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right
         Me.suffixDataTextBox.StyleName = "Data"
-        Me.suffixDataTextBox.Value = ""
+        Me.suffixDataTextBox.Value = "=Fields.projectCost"
         '
         'qtyDataTextBox
         '
         Me.qtyDataTextBox.CanGrow = True
-        Me.qtyDataTextBox.Format = "{0:N2}"
-        Me.qtyDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(17.0R), Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R))
+        Me.qtyDataTextBox.Format = "{0:C2}"
+        Me.qtyDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.90000057220459R), Telerik.Reporting.Drawing.Unit.Cm(0R))
         Me.qtyDataTextBox.Name = "qtyDataTextBox"
-        Me.qtyDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999957084655762R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
+        Me.qtyDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.09999942779541R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.qtyDataTextBox.Style.Font.Name = "Open Sans"
         Me.qtyDataTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.0R)
         Me.qtyDataTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right
         Me.qtyDataTextBox.StyleName = "Data"
-        Me.qtyDataTextBox.Value = "=Fields.qty"
+        Me.qtyDataTextBox.Value = "=Fields.purchaseCost"
         '
         'priceDataTextBox
         '
         Me.priceDataTextBox.CanGrow = True
-        Me.priceDataTextBox.Format = "{0:C2}"
-        Me.priceDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(21.456510543823242R), Telerik.Reporting.Drawing.Unit.Cm(0.052916664630174637R))
+        Me.priceDataTextBox.Format = "{0}"
+        Me.priceDataTextBox.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19.766666412353516R), Telerik.Reporting.Drawing.Unit.Cm(0R))
         Me.priceDataTextBox.Name = "priceDataTextBox"
-        Me.priceDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.9434912204742432R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
+        Me.priceDataTextBox.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.0000007152557373R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
         Me.priceDataTextBox.Style.Font.Name = "Open Sans"
         Me.priceDataTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.0R)
         Me.priceDataTextBox.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right
         Me.priceDataTextBox.StyleName = "Data"
-        Me.priceDataTextBox.Value = "=Fields.price"
+        Me.priceDataTextBox.Value = "=IIF(incWaste > 0, FORMAT(""{0:C2}"", Fields.projectWaste) + ' ('+ Fields.wastePerc" &
+    "ent+'%)', 'n/a (' + Fields.wastePercent + '%)')"
         '
-        'PricedMaterials
+        'TextBox1
+        '
+        Me.TextBox1.CanGrow = True
+        Me.TextBox1.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22.0R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.4000003337860107R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
+        Me.TextBox1.Style.Font.Bold = True
+        Me.TextBox1.Style.Font.Name = "Open Sans"
+        Me.TextBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9.0R)
+        Me.TextBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right
+        Me.TextBox1.StyleName = "Caption"
+        Me.TextBox1.Value = "Total Cost (£)"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.CanGrow = True
+        Me.TextBox2.Format = "{0:C2}"
+        Me.TextBox2.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22.0R), Telerik.Reporting.Drawing.Unit.Cm(0.018333425745368004R))
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.4000003337860107R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
+        Me.TextBox2.Style.Font.Name = "Open Sans"
+        Me.TextBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8.0R)
+        Me.TextBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right
+        Me.TextBox2.StyleName = "Data"
+        Me.TextBox2.Value = "=Fields.projectTotalCost"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.CanGrow = True
+        Me.TextBox4.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(10.133333206176758R), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666R))
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.8666672706604R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
+        Me.TextBox4.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.Solid
+        Me.TextBox4.Style.Font.Bold = True
+        Me.TextBox4.Style.Font.Name = "Open Sans"
+        Me.TextBox4.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9.0R)
+        Me.TextBox4.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center
+        Me.TextBox4.StyleName = "Caption"
+        Me.TextBox4.Value = "Purchase Cost"
+        '
+        'TextBox5
+        '
+        Me.TextBox5.CanGrow = True
+        Me.TextBox5.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(17.600000381469727R), Telerik.Reporting.Drawing.Unit.Cm(0R))
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.7666654586791992R), Telerik.Reporting.Drawing.Unit.Cm(0.70999997854232788R))
+        Me.TextBox5.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.Solid
+        Me.TextBox5.Style.Font.Bold = True
+        Me.TextBox5.Style.Font.Name = "Open Sans"
+        Me.TextBox5.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9.0R)
+        Me.TextBox5.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center
+        Me.TextBox5.StyleName = "Caption"
+        Me.TextBox5.Value = "Project Cost"
+        '
+        'TextBox6
+        '
+        Me.TextBox6.CanGrow = True
+        Me.TextBox6.Location = New Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0R), Telerik.Reporting.Drawing.Unit.Cm(0R))
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(19.30000114440918R), Telerik.Reporting.Drawing.Unit.Cm(0.60000002384185791R))
+        Me.TextBox6.Style.Font.Bold = True
+        Me.TextBox6.Style.Font.Name = "Open Sans"
+        Me.TextBox6.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(14.0R)
+        Me.TextBox6.StyleName = "Data"
+        Me.TextBox6.Value = "=IIF(Fields.resourceTypeId = 1, 'Labour', " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "IIF(Fields.resourceTypeId = 2, 'Mater" &
+    "ials', 'Plant & Equipment'" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "))"
+        '
+        'ResourceBreakdown
         '
         Me.DataSource = Me.SqlDataSource1
-        Me.Groups.AddRange(New Telerik.Reporting.Group() {Me.supplierNameGroup, Me.labelsGroup})
+        Me.Groups.AddRange(New Telerik.Reporting.Group() {Me.resourceTypeGroup, Me.labelsGroup})
         Me.Items.AddRange(New Telerik.Reporting.ReportItemBase() {Me.supplierNameGroupHeader, Me.supplierNameGroupFooter, Me.labelsGroupHeader, Me.labelsGroupFooter, Me.pageHeader, Me.pageFooter, Me.detail})
-        Me.Name = "SupplierResources"
+        Me.Name = "ResourceBreakdown"
         Me.PageSettings.Landscape = True
         Me.PageSettings.Margins.Bottom = Telerik.Reporting.Drawing.Unit.Mm(25.399999618530273R)
         Me.PageSettings.Margins.Left = Telerik.Reporting.Drawing.Unit.Mm(25.399999618530273R)
@@ -353,13 +426,8 @@ Partial Class PricedMaterials
         ReportParameter1.Name = "pid"
         ReportParameter1.Text = "pid"
         ReportParameter1.Type = Telerik.Reporting.ReportParameterType.[Integer]
-        ReportParameter1.Value = "229"
-        ReportParameter2.Name = "resourceTypeId"
-        ReportParameter2.Text = "resourceTypeId"
-        ReportParameter2.Type = Telerik.Reporting.ReportParameterType.[Integer]
-        ReportParameter2.Value = "1"
+        ReportParameter1.Value = "277"
         Me.ReportParameters.Add(ReportParameter1)
-        Me.ReportParameters.Add(ReportParameter2)
         Me.Style.BackgroundColor = System.Drawing.Color.White
         StyleRule1.Selectors.AddRange(New Telerik.Reporting.Drawing.ISelector() {New Telerik.Reporting.Drawing.StyleSelector("Title")})
         StyleRule1.Style.Color = System.Drawing.Color.Black
@@ -389,9 +457,8 @@ Partial Class PricedMaterials
     End Sub
     Friend WithEvents SqlDataSource1 As Telerik.Reporting.SqlDataSource
     Friend WithEvents supplierNameGroupHeader As Telerik.Reporting.GroupHeaderSection
-    Friend WithEvents supplierNameDataTextBox As Telerik.Reporting.TextBox
     Friend WithEvents supplierNameGroupFooter As Telerik.Reporting.GroupFooterSection
-    Friend WithEvents supplierNameGroup As Telerik.Reporting.Group
+    Friend WithEvents resourceTypeGroup As Telerik.Reporting.Group
     Friend WithEvents labelsGroupHeader As Telerik.Reporting.GroupHeaderSection
     Friend WithEvents resourceNameCaptionTextBox As Telerik.Reporting.TextBox
     Friend WithEvents manufacturerCaptionTextBox As Telerik.Reporting.TextBox
@@ -415,4 +482,9 @@ Partial Class PricedMaterials
     Friend WithEvents priceDataTextBox As Telerik.Reporting.TextBox
     Friend WithEvents priceSumFunctionTextBox As Telerik.Reporting.TextBox
     Friend WithEvents TextBox3 As Telerik.Reporting.TextBox
+    Friend WithEvents TextBox1 As Telerik.Reporting.TextBox
+    Friend WithEvents TextBox4 As Telerik.Reporting.TextBox
+    Friend WithEvents TextBox5 As Telerik.Reporting.TextBox
+    Friend WithEvents TextBox2 As Telerik.Reporting.TextBox
+    Friend WithEvents TextBox6 As Telerik.Reporting.TextBox
 End Class

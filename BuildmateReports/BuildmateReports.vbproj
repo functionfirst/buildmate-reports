@@ -67,10 +67,40 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProjectSummary.Designer.vb">
+      <DependentUpon>ProjectSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AcceptanceForm.Designer.vb">
       <DependentUpon>AcceptanceForm.vb</DependentUpon>
     </Compile>
     <Compile Include="AcceptanceForm.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BuildElementsDetailed.Designer.vb">
+      <DependentUpon>BuildElementsDetailed.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BuildElementsDetailed.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BuildElements.Designer.vb">
+      <DependentUpon>BuildElements.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BuildElements.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SundryItems.Designer.vb">
+      <DependentUpon>SundryItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SundryItems.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AdhocCosts.Designer.vb">
+      <DependentUpon>AdhocCosts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdhocCosts.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SoleTrader.Designer.vb">
@@ -100,10 +130,10 @@
     <Compile Include="NewCompany.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PricedMaterials.Designer.vb">
-      <DependentUpon>PricedMaterials.vb</DependentUpon>
+    <Compile Include="ResourceBreakdown.Designer.vb">
+      <DependentUpon>ResourceBreakdown.vb</DependentUpon>
     </Compile>
-    <Compile Include="PricedMaterials.vb">
+    <Compile Include="ResourceBreakdown.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SupplierResources.Designer.vb">
@@ -114,8 +144,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ProjectSummary.resx">
+      <DependentUpon>ProjectSummary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AcceptanceForm.resx">
       <DependentUpon>AcceptanceForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildElementsDetailed.resx">
+      <DependentUpon>BuildElementsDetailed.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildElements.resx">
+      <DependentUpon>BuildElements.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SundryItems.resx">
+      <DependentUpon>SundryItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdhocCosts.resx">
+      <DependentUpon>AdhocCosts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SoleTrader.resx">
       <DependentUpon>SoleTrader.vb</DependentUpon>
@@ -129,8 +174,8 @@
     <EmbeddedResource Include="NewCompany.resx">
       <DependentUpon>NewCompany.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PricedMaterials.resx">
-      <DependentUpon>PricedMaterials.vb</DependentUpon>
+    <EmbeddedResource Include="ResourceBreakdown.resx">
+      <DependentUpon>ResourceBreakdown.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SupplierResources.resx">
       <DependentUpon>SupplierResources.vb</DependentUpon>
